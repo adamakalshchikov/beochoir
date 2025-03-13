@@ -1,2 +1,0 @@
-telegram=https://t.me/username
-instagram=https://instagram.com/username

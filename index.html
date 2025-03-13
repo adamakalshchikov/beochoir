@@ -81,22 +81,30 @@
     <div class="container">
         <!-- Social Links Section -->
         <div id="social-links-section" class="section">
-            <h2>Support us</h2>
+            <h2>Join us</h2>
             <div id="social-links-container">
                 <div class="loading">Loading social links...</div>
             </div>
         </div>
-        
+
+        <div id="support-links-section" class="section">
+            <h2>Support us (bank cards)</h2>
+            <div id="social-links-container">
+                <div class="loading">Loading social links...</div>
+            </div>
+        </div>
+
         <div id="copy-values-section" class="section">
             <div id="copy-values-container">
+                <h2>Support us (crypto)</h2>
                 <div class="loading">Loading values...</div>
             </div>
         </div>
     </div>
-
     <script>
         document.addEventListener('DOMContentLoaded', async function() {
             const socialLinksContainer = document.getElementById('social-links-container');
+            const supportLinksContainer = document.getElementById('support-links-container');
             const copyValuesContainer = document.getElementById('copy-values-container');
             
             // Load social links
@@ -124,6 +132,33 @@
             } catch (error) {
                 socialLinksContainer.innerHTML = `<div class="error-message">Error loading social links: ${error.message}</div>`;
                 console.error('Error loading social links:', error);
+            }
+
+            // Load support links
+            try {
+                const supportResponse = await fetch('support-links.txt');
+                if (!supportResponse.ok) {
+                    throw new Error('Failed to load support links file');
+                }
+                
+                const supportContent = await supportResponse.text();
+                const supportLinks = parseLinks(supportContent);
+                
+                // Clear loading message
+                supportLinksContainer.innerHTML = '';
+                
+                if (supportLinks.length === 0) {
+                    supportLinksContainer.innerHTML = '<div>No support links available</div>';
+                } else {
+                    // Create social links elements
+                    supportLinks.forEach(link => {
+                        const linkElement = createSocialLinkElement(link);
+                        supportLinksContainer.appendChild(linkElement);
+                    });
+                }
+            } catch (error) {
+                supportLinksContainer.innerHTML = `<div class="error-message">Error loading support links: ${error.message}</div>`;
+                console.error('Error loading support links:', error);
             }
             
             // Load copy values
