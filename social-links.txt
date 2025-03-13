@@ -1,2 +1,3 @@
 telegram=https://t.me/username
-instagram=https://instagram.com/username
+BuyMeACoffee=https://buymeacoffee.com/beohorus
+T-bank=https://www.tbank.ru/cf/1XJ2VPQZjob
