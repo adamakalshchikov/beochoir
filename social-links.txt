@@ -1,1 +1,1 @@
-Telegram=https://t.me/username
+Telegram=https://t.me/russian_choir_beograd
